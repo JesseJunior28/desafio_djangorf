@@ -1,8 +1,8 @@
 # Desafio Django REST Framework
 
 ![Python](https://img.shields.io/badge/python-3.12-blue)
-![Django](https://img.shields.io/badge/django-3.1.7-green)
-![Django REST Framework](https://img.shields.io/badge/djangorestframework-3.14.0-brightgreen)
+![Django](https://img.shields.io/badge/django-5.2.5-green)
+![Django REST Framework](https://img.shields.io/badge/djangorestframework-3.16.0-brightgreen)
 
 Aplicação web construída com Django e Django REST Framework para gerenciamento de **usuários, pedidos e itens de catálogo**, com controle de permissões baseado em grupos (Clientes, Funcionários e Gerência).
 
