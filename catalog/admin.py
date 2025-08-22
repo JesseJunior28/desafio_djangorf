@@ -1,6 +1,7 @@
 from django.contrib import admin
+from .models import Item
 
-# Register your models here.
-class ItensConfig(appConfig):
-    default_auto_field = 'django.db.models.BigAutoField'
-    name = 'catálogo'
+@admin.register(Item)
+class ItemAdmin(admin.ModelAdmin):
+    list_display = ['item_id', 'nome', 'preco', 'created_at']
+    search_fields = ['nome', 'descricao']

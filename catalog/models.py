@@ -1,4 +1,3 @@
-
 from django.db import models
 
 class Item(models.Model):
@@ -8,8 +7,7 @@ class Item(models.Model):
     preco = models.DecimalField(max_digits=10, decimal_places=2)
     created_at = models.DateTimeField(auto_now_add=True)
     
-
-def __str__(self):
+    def __str__(self):
         return self.nome
     
     def __str_descricao__(self):

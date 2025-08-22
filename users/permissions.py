@@ -1,6 +1,6 @@
 from rest_framework import permissions
-from pedidos.models import Pedido
-from itens.models import Item
+from orders.models import Order
+from catalog.models import Item
 
 #Define acesso/manipulação de pedidos baseado no grupo:
 #Cliente: apenas visualizar seus próprios pedidos; não cria ou altera pedidos de outros.

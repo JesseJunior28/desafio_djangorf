@@ -1,9 +1,9 @@
 from rest_framework import viewsets, filters, status
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticatedOrReadOnly
-from itens.models import Item
-from itens.serializers import ItemSerializer, ItemResumeSerializer, ItemUpdateSerializer
-from usuarios.permissions import GroupsPermissionForItemManipulation
+from catalog.models import Item
+from catalog.serializers import ItemSerializer, ItemResumeSerializer, ItemUpdateSerializer
+from users.permissions import GroupsPermissionForItemManipulation
 
 
 class ItemViewSet(viewsets.ModelViewSet):
@@ -42,7 +42,7 @@ class ItemViewSet(viewsets.ModelViewSet):
     def destroy(self, request, *args, **kwargs):
         
         if not request.user.is_staff:
-            return Response({"detail": "Apenas staff pode deletar itens."}, status=status.HTTP_403_FORBIDDEN)
+            return Response({"detail": "Apenas o admin pode deletar itens."}, status=status.HTTP_403_FORBIDDEN)
         return super().destroy(request, *args, **kwargs)
 
     def get_queryset(self):

@@ -1,18 +1,17 @@
 from django.contrib.auth.models import User
-from pedidos.models import Pedido
-from pedidos.serializers import PedidoSerializer
+from orders.models import Order
+from orders.serializers import OrderDetailSerializer
 from rest_framework import viewsets, status
 from rest_framework.decorators import action
 from rest_framework.permissions import IsAuthenticated, AllowAny
 from rest_framework.response import Response
-from usuarios.serializers import (
+from users.serializers import (
     UserSerializer,
     UserSignUpSerializer,
     UserCreateSerializer,
     UserUpdateSerializer,
 )
-from usuarios.permissions import GroupsPermissionsForUserManipulation
-from usuarios.utils import UserGroupVerify
+from users.permissions import GroupsPermissionForItemManipulation
 
 #ViewSet para gerenciamento de usuários.
 #Funcionalidades:
@@ -32,7 +31,7 @@ class UserViewSet(viewsets.ModelViewSet):
         if self.action == 'signup':
             return [AllowAny()]
         elif self.action in ['update', 'partial_update', 'destroy', 'pedidos']:
-            return [IsAuthenticated(), GroupsPermissionsForUserManipulation()]
+            return [IsAuthenticated(), GroupsPermissionForItemManipulation()]
         return [IsAuthenticated()]
 
     def get_serializer_class(self):
@@ -62,7 +61,7 @@ class UserViewSet(viewsets.ModelViewSet):
         return super().get_queryset()
 
     @action(detail=True, methods=['get'], url_path='pedidos',
-            permission_classes=[GroupsPermissionsForUserManipulation])
+            permission_classes=[GroupsPermissionForItemManipulation])
     def pedidos(self, request, username=None):
         
         #Listagem de pedidos de um usuário específico.

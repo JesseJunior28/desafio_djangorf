@@ -1,8 +1,8 @@
 from rest_framework import viewsets, mixins
 from rest_framework.permissions import IsAuthenticated
-from pedidos.models import Pedido
-from pedidos.serializers import PedidoCreateSerializer, PedidoDetailSerializer
-from pedidos.permissions import IsOwnerOrAdmin
+from orders.models import Order, OrderItem
+from orders.permissions import IsOwnerOrAdmin
+from orders.serializers import OrderDetailSerializer
 
 
 #ViewSet para Pedidos:
@@ -10,7 +10,7 @@ from pedidos.permissions import IsOwnerOrAdmin
 # retrieve: detalhes completos
 # create: criação com validação de estoque
 
-class PedidoViewSet(mixins.CreateModelMixin,
+class OrderViewSet(mixins.CreateModelMixin,
                     mixins.RetrieveModelMixin,
                     mixins.ListModelMixin,
                     viewsets.GenericViewSet):
@@ -19,7 +19,7 @@ class PedidoViewSet(mixins.CreateModelMixin,
 
     def get_queryset(self):
         user = self.request.user
-        qs = Pedido.objects.prefetch_related("itenspedido__item").all()
+        qs = Order.objects.prefetch_related("itenspedido__item").all()
         if user.groups.filter(name='Cliente').exists():
             qs = qs.filter(usuario=user)
         return qs

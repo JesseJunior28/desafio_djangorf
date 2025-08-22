@@ -11,9 +11,9 @@ urlpatterns = [
     path("api/token/refresh/", TokenRefreshView.as_view(), name="token_refresh"),
 
     # Apps 
-    path("api/", include("users.urls")),
-    path("api/", include("catalog.urls")),
-    path("api/", include("orders.urls")),
+    path("api/users/", include("users.urls")),
+    path("api/catalog/", include("catalog.urls")),
+    path("api/orders/", include("orders.urls")),
 
     # OpenAPI & Docs
     path("api/schema/", SpectacularAPIView.as_view(), name="schema"),

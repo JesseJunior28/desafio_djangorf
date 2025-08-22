@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Item
+from catalog.models import Item
 
 # Serializer padrão.
 class ItemSerializer(serializers.ModelSerializer):
@@ -14,7 +14,7 @@ class ItemSerializer(serializers.ModelSerializer):
         return value
     
 # Serializer resumido para listagens
-class ItemResumoSerializer(serializers.ModelSerializer):
+class ItemResumeSerializer(serializers.ModelSerializer):
     class Meta:
         model = Item
         fields = ['codigo_item', 'nome', 'descricao', 'preco']
